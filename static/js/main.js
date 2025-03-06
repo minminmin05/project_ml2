@@ -1,6 +1,12 @@
 document.getElementById("health-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
+    console.log("✅ Form Submitted, Showing Loading Spinner...");
+
+    document.getElementById("advice-container").style.display = "block";
+    document.getElementById("loading-spinner").style.display = "block";
+    document.getElementById("advice-list").innerHTML = ""; // ล้างข้อมูลเก่า
+
     let height = parseFloat(document.getElementById("height").value);
     let weight = parseFloat(document.getElementById("weight").value);
     let bmi = isNaN(height) || isNaN(weight) ? "N/A" : (weight / ((height / 100) ** 2)).toFixed(2);
@@ -23,11 +29,6 @@ document.getElementById("health-form").addEventListener("submit", function(event
         health_goals: document.getElementById("health_goals").value.trim().split(","),
     };
 
-    // แสดง Loading Spinner
-    document.getElementById("advice-container").style.display = "block";
-    document.getElementById("loading-spinner").style.display = "block";
-    document.getElementById("advice-list").innerHTML = ""; // เคลียร์ผลลัพธ์เก่าก่อน
-
     fetch("/get-advice", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -35,28 +36,30 @@ document.getElementById("health-form").addEventListener("submit", function(event
     })
     .then(response => response.json())
     .then(data => {
-        // ซ่อน Loading Spinner
+        console.log("✅ API Response Received, Hiding Spinner...");
+
+        // ✅ ซ่อน Loading Spinner ทันทีที่ API ตอบกลับ
         document.getElementById("loading-spinner").style.display = "none";
 
-        // ตรวจสอบข้อมูลและแสดงผล
         const adviceList = document.getElementById("advice-list");
-        adviceList.innerHTML = ""; // เคลียร์ข้อมูลเก่าก่อนแสดงผลใหม่
+        adviceList.innerHTML = ""; // ล้างข้อมูลก่อนแสดงผลใหม่
 
         const filteredAdvice = data.advice
             .split("\n")
             .map(advice => advice.trim()) // ตัดช่องว่าง
             .filter(advice => advice !== ""); // กรองบรรทัดว่าง
 
-        // แสดงข้อมูลที่กรองแล้ว
         filteredAdvice.forEach(advice => {
             let li = document.createElement("li");
             li.textContent = advice;
             adviceList.appendChild(li);
         });
+
+        console.log("✅ Advice Displayed Successfully");
     })
     .catch(error => {
         console.error("❌ Error:", error);
-        document.getElementById("loading-spinner").style.display = "none";
+        document.getElementById("loading-spinner").style.display = "none"; // ซ่อน Spinner ถ้ามี Error
         document.getElementById("advice-list").innerHTML = "<li>เกิดข้อผิดพลาด! กรุณาลองใหม่</li>";
     });
 });
