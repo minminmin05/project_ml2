@@ -1,0 +1,150 @@
+/* 🌑 Background: Set to dark mode */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #121212; /* สีดำ */
+    color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* 📌 Header Section */
+header {
+    background-color: #ff9800; /* สีส้ม */
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* 🎨 Change Header Text Color */
+header h1,
+.container h1 {
+    color: #000; /* สีดำ */
+}
+
+/* 📋 Form Container */
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+    background: #ff9800; /* สีส้ม */
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+/* 🎯 Form Grid Layout: 2 Columns */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+}
+
+/* 🎯 Input Fields */
+input, select {
+    width: 100%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+/* 🔘 Submit Button */
+button {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    grid-column: span 2; /* ปุ่มอยู่กลาง */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 📌 Advice Container */
+#advice-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background: linear-gradient(to right, #ffa726, #ff7043); /* ไล่สีส้ม */
+    border-left: 5px solid #ff5722; /* เส้นขอบสีแดง */
+    border-radius: 10px;
+    font-size: 16px;
+    text-align: left;
+    min-height: 150px;
+    color: black;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3); /* เพิ่มเงา */
+}
+
+/* 🎯 Advice Title */
+#advice-container h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* 📋 Advice List */
+#advice-list {
+    list-style-type: none; /* เอาจุดกลมออก */
+    padding: 0;
+    margin: 0;
+}
+
+/* 🎯 Individual Advice Item */
+#advice-list li {
+    font-size: 16px;
+    padding: 10px;
+    margin: 5px 0; /* ลดช่องว่างระหว่างแต่ละอัน */
+    background: rgba(255, 255, 255, 0.2); /* เพิ่มพื้นหลังโปร่งแสง */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ✅ Green Check Icon */
+#advice-list li::before {
+    content: "✔";
+    color: green;
+    font-weight: bold;
+}
+
+/* ⏳ Loading Spinner */
+#loading-spinner {
+    text-align: center;
+    margin-top: 20px;
+    display: none; /* ทำให้แน่ใจว่ามันไม่ถูกซ่อน */
+}
+
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr; /* แสดงเป็น 1 คอลัมน์ในมือถือ */
+    }
+}
