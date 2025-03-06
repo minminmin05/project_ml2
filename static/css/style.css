@@ -123,6 +123,7 @@ button:hover {
 #loading-spinner {
     text-align: center;
     margin-top: 20px;
+    display: none; /* ทำให้แน่ใจว่ามันไม่ถูกซ่อน */
 }
 
 .spinner {
@@ -139,6 +140,7 @@ button:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
 
 /* 📱 Mobile Responsive */
 @media (max-width: 768px) {
